@@ -47,10 +47,10 @@ public class DonorController {
         updateDonor.setContactNumber(donorDetails.getContactNumber());
         updateDonor.setEmail(donorDetails.getEmail());
         updateDonor.setAddress(donorDetails.getAddress());
-//        updateDonor.setDateOfBirth(donorDetails.getDateOfBirth());
+        updateDonor.setDateOfBirth(donorDetails.getDateOfBirth());
         updateDonor.setBloodType(donorDetails.getBloodType());
         updateDonor.setGender(donorDetails.getGender());
-//        updateDonor.setLastDonationDate(donorDetails.getLastDonationDate());
+        updateDonor.setLastDonationDate(donorDetails.getLastDonationDate());
 
         donorRepository.save(updateDonor);
 

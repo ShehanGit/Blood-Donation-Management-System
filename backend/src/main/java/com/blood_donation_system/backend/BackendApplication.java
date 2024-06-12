@@ -1,5 +1,6 @@
 package com.blood_donation_system.backend;
 
+import com.blood_donation_system.backend.repsitory.AppointmentRepository;
 import com.blood_donation_system.backend.repsitory.DonorRepository;
 import com.blood_donation_system.backend.repsitory.HospitalReository;
 
@@ -22,6 +23,10 @@ public class BackendApplication implements CommandLineRunner {
 
 	@Autowired
 	private  HospitalReository hospitalReository;
+
+	@Autowired
+	private AppointmentRepository appointmentRepository;
+
 
 	@Override
 	public void run(String... args) throws Exception {
