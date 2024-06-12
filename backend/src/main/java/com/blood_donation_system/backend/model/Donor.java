@@ -31,7 +31,7 @@ public class Donor {
     private String address;
 
     @Column(name = "date_of_birth")
-    @Temporal(TemporalType.DATE)  // Use Temporal to handle date fields appropriately
+    @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
 
     @Column(name = "blood_type")
