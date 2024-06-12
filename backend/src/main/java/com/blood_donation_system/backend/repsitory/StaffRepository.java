@@ -1,4 +1,8 @@
 package com.blood_donation_system.backend.repsitory;
 
-public interface StaffRepository {
+import com.blood_donation_system.backend.model.Staff;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StaffRepository extends JpaRepository<Staff, Long> {
+
 }

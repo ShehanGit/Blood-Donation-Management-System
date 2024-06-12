@@ -1,4 +1,7 @@
 package com.blood_donation_system.backend.repsitory;
 
-public interface DonorRepository {
+import com.blood_donation_system.backend.model.Donor;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DonorRepository extends JpaRepository<Donor, Long> {
 }
