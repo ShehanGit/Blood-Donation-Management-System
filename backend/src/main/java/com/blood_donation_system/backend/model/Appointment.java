@@ -1,4 +1,4 @@
-package com.blood_donation_system.backend.controller;
+package com.blood_donation_system.backend.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
