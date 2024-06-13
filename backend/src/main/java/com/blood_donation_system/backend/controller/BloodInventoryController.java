@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/api/v1/blood_inventory")
+@RequestMapping("/blood_inventory")
 public class BloodInventoryController {
 
     @Autowired
