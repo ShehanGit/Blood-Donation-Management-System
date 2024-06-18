@@ -18,4 +18,6 @@ module.exports = {
     flowbite.plugin(),
 
   ],
+  darkMode: 'class',
+
 }

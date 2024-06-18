@@ -5,7 +5,7 @@ export default function FooterComponent() {
   return (
     <Footer bgDark>
       <div className="w-full">
-        <div className="grid w-full grid-cols-2 gap-8 px-6 py-8 md:grid-cols-4">
+        <div className="grid w-full grid-cols-2 gap-8 px-8 py-8 md:grid-cols-4">
           <div>
             <Footer.Title title="Company" />
             <Footer.LinkGroup col>
