@@ -1,16 +1,22 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import MyComponent from './component/MyComponent';
-import NavBar from './component/NavBar';
 
+import NavBar from './component/NavBar';
+import DonerRegister from './pages/DonerRegister';
 
 function App() {
   return (
     <div className="App">
-
-      <NavBar/ >
-
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route exact path="/register" element={<DonerRegister />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
 
 export default App;
+
