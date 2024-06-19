@@ -17,9 +17,9 @@ const NavBar = () => {
     return (
         <div>
             <Navbar fluid rounded>
-      <Navbar.Brand href="https://flowbite-react.com">
+      <Navbar.Brand onClick={handleButtonClick}>
         <img src={logo} className="mr-3 h-6 sm:h-28" alt="Flowbite React Logo" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Flowbite React</span>
+        <span onClick={handleButtonClick} className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white">BloodFlow</span>
       </Navbar.Brand>
       <div className="flex md:order-2">
         <Button onClick={handleButtonClick}>Get started</Button>
