@@ -7,6 +7,7 @@ export default function DonerRegister() {
     <div>
           <NavBar/>
 
+          <div className="center-container">
             <div className="container1">
                
             <form class="p-6">
@@ -78,6 +79,6 @@ export default function DonerRegister() {
 
             </div>
           </div>
-    
+          </div>
   );
 }

@@ -14,12 +14,17 @@ const NavBar = () => {
       navigate('/register'); // Navigates to the "/register" page
     };
 
+    const handleButtonClick1 = () => {
+      navigate('/'); // Navigates to the "/register" page
+    };
+
+
     return (
         <div>
             <Navbar fluid rounded>
-      <Navbar.Brand onClick={handleButtonClick}>
+      <Navbar.Brand onClick={handleButtonClick1}>
         <img src={logo} className="mr-3 h-6 sm:h-28" alt="Flowbite React Logo" />
-        <span onClick={handleButtonClick} className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white">BloodFlow</span>
+        <span onClick={handleButtonClick1} className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white">BloodFlow</span>
       </Navbar.Brand>
       <div className="flex md:order-2">
         <Button onClick={handleButtonClick}>Get started</Button>

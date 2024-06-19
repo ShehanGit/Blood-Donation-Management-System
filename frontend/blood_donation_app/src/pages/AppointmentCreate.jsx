@@ -1,9 +1,11 @@
 import React from "react";
 import '../css/AppointmentCreate.css';
+import NavBar from "../component/NavBar";
 
 export default function AppointmentCreate() {
   return (
     <div>
+        <NavBar></NavBar>
       <div className="center-container">
         <div className="container1">
           <form className="p-6">
