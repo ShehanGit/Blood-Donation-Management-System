@@ -6,7 +6,7 @@ export default function AppointmentCreate() {
   return (
     <div>
         <NavBar></NavBar>
-      <div className="center-container">
+      <div className="center-container2">
         <div className="container1">
           <form className="p-6">
             <div className="grid gap-6 mb-6 md:grid-cols-2">
