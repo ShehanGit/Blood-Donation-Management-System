@@ -76,6 +76,8 @@ export default function ApoinmentList() {
                     <Table.Cell>{formatDate(appointment.scheduledDate)}</Table.Cell>
                     <Table.Cell>{appointment.location}</Table.Cell>
                     <Table.Cell>{appointment.appointmentStatus}</Table.Cell>
+                    <Table.Cell>{appointment.appointmentStatus}</Table.Cell>
+
 
 
 

@@ -8,6 +8,8 @@ import AppointmentCreate from './pages/AppointmentCreate';
 import AdminDashboard from './pages/AdminDashboard';
 import DonerList from './pages/adminpages/DonerList';
 import ApoinmentList from './pages/adminpages/ApointmentList';
+import Recipients from './pages/adminpages/RecipientsList';
+
 
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
           <Route exact path="/dashboard" element={<AdminDashboard />} />
           <Route exact path="/donerlist" element={<DonerList />} />
           <Route exact path="/apoinmentlist" element={<ApoinmentList />} />
+          <Route exact path="/Recipients" element={<Recipients />} />
+
 
         </Routes>
       </Router>

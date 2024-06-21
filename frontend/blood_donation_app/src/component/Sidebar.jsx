@@ -21,8 +21,8 @@ const SideBar = () => {
           <Sidebar.Item href="/apoinmentlist" icon={HiInbox}>
             Apointments
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiUser}>
-            Users
+          <Sidebar.Item href="/Recipients" icon={HiUser}>
+          Recipients
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiShoppingBag}>
             Products
