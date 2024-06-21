@@ -2,13 +2,12 @@ import axios from "axios";
 
 const REST_API_BASE_URL = "http://localhost:8080/donors";
 
-export const listExamDetails = () => axios.get(REST_API_BASE_URL);
+export const getDonorList = () => axios.get(REST_API_BASE_URL);
 
-export const createDoner = (doner) => axios.post(REST_API_BASE_URL, doner);
+export const createDonor = (donor) => axios.post(REST_API_BASE_URL, donor);
 
-export const getExamById = (examId) => axios.get(REST_API_BASE_URL + '/' + examId); 
+export const getDonorById = (donorId) => axios.get(`${REST_API_BASE_URL}/${donorId}`);
 
-export const deleteExamData = (examId) => axios.delete(REST_API_BASE_URL + '/' + examId);
+export const deleteDonor = (donorId) => axios.delete(`${REST_API_BASE_URL}/${donorId}`);
 
-export const updateExamData = (examId, exam) => axios.put(REST_API_BASE_URL + '/' + examId, exam);
-
+export const updateDonor = (donorId, donor) => axios.put(`${REST_API_BASE_URL}/${donorId}`, donor);

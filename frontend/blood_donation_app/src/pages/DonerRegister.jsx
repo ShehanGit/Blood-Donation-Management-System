@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../css/DonerRegister.css';
 import NavBar from "../component/NavBar";
-import { createDoner } from "../services/DoneerServices";
+import { createDonor } from "../services/DoneerServices";
 
 
 
@@ -95,7 +95,7 @@ export default function DonerRegister() {
       console.log(donorDetails);
       // Proceed with form submission (e.g., API call)
 
-      createDoner(donorDetails).then((Response) => {
+      createDonor(donorDetails).then((Response) => {
         console.log(Response.data);
       });
 

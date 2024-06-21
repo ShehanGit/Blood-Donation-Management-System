@@ -1,41 +1,65 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NavBar from "../../component/NavBar";
 import Sidebar from "../../component/Sidebar";
 import { Table, Button } from "flowbite-react";
+import { getDonorList, deleteDonor } from "../../services/DoneerServices"; // Assuming you have these service functions
 
 export default function DonorList() {
-  // Sample data
-  const donors = [
-    {
-      donorId: 1,
-      name: "John Doe",
-      contactNumber: "+1234567890",
-      email: "johndoe@example.com",
-      address: "123 Elm Street, Metropolis",
-      dateOfBirth: "1990-01-01",
-      bloodType: "A+",
-      gender: "Male",
-      lastDonationDate: "2024-01-01",
-    },
-    // Add more donor objects here as needed
-  ];
+  const [donors, setDonors] = useState([]);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchDonorDetails = async () => {
+      try {
+        const response = await getDonorList();
+        if (response.status === 200) {
+          setDonors(response.data);
+        } else {
+          console.error("Error fetching donor details", response.status);
+        }
+      } catch (error) {
+        console.error("Error fetching donor details:", error);
+      }
+    };
+
+    fetchDonorDetails();
+  }, []);
 
   const handleUpdate = (donorId) => {
-    console.log(`Update donor with ID: ${donorId}`);
-    // Implement update logic here
+    navigate(`/donorupdate/${donorId}`);
   };
 
-  const handleDelete = (donorId) => {
-    console.log(`Delete donor with ID: ${donorId}`);
-    // Implement delete logic here
+  const handleDelete = async (donorId) => {
+    try {
+      await deleteDonor(donorId);
+      const response = await getDonorList();
+      if (response.status === 200) {
+        setDonors(response.data);
+      } else {
+        console.error("Error refetching donors after deletion", response.status);
+      }
+    } catch (error) {
+      console.error("Error deleting donor:", error);
+    }
   };
+
+  
 
   return (
     <div>
       <NavBar />
       <div style={{ display: "flex" }}>
-        <Sidebar style={{ flex: "0 0 250px" }} /> {/* Sidebar width */}
-        <div style={{ flex: "1", padding: "20px" }}> {/* Content area */}
+        <Sidebar style={{ flex: "0 0 250px" }} />
+        <div style={{ flex: "1", padding: "20px" }}>
+          <div className="title">
+            <div className="mt-4 mx-5" style={{ marginBottom: "-40px" }}>
+            </div>
+          </div>
+          
+           
+          </div>
           <div className="overflow-x-auto">
             <Table striped>
               <Table.Head>
@@ -89,6 +113,6 @@ export default function DonorList() {
           </div>
         </div>
       </div>
-    </div>
+
   );
 }
