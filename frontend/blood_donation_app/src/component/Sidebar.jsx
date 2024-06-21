@@ -18,8 +18,8 @@ const SideBar = () => {
           <Sidebar.Item href="/donerlist" icon={HiViewBoards}>
             Doner List
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiInbox}>
-            Inbox
+          <Sidebar.Item href="/apoinmentlist" icon={HiInbox}>
+            Apointments
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiUser}>
             Users

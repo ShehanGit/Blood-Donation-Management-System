@@ -2,13 +2,17 @@ import axios from "axios";
 
 const REST_API_BASE_URL = "http://localhost:8080/appointments";
 
-export const listExamDetails = () => axios.get(REST_API_BASE_URL);
+// Fetch all appointments
+export const listAppointments = () => axios.get(REST_API_BASE_URL);
 
+// Create a new appointment
 export const createAppointment = (appointment) => axios.post(REST_API_BASE_URL, appointment);
 
-export const getExamById = (examId) => axios.get(REST_API_BASE_URL + '/' + examId); 
+// Fetch an appointment by ID
+export const getAppointmentById = (id) => axios.get(`${REST_API_BASE_URL}/${id}`);
 
-export const deleteExamData = (examId) => axios.delete(REST_API_BASE_URL + '/' + examId);
+// Update an appointment by ID
+export const updateAppointment = (id, appointment) => axios.put(`${REST_API_BASE_URL}/${id}`, appointment);
 
-export const updateExamData = (examId, exam) => axios.put(REST_API_BASE_URL + '/' + examId, exam);
-
+// Delete an appointment by ID
+export const deleteAppointment = (id) => axios.delete(`${REST_API_BASE_URL}/${id}`);
