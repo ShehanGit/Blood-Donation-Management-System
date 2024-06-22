@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.Date;  // Import Date for handling date fields
+import java.util.Date;  
 
 @Getter
 @Setter
@@ -27,10 +27,16 @@ public class Recipient {
     @Column(name = "blood_type_needed")
     private String bloodTypeNeeded;
 
+    @Column(name = "required_blood_volume")
+    private Double requiredBloodVolume; 
+
     @Column(name = "urgency_level")
     private String urgencyLevel;
 
     @Column(name = "receiving_date")
     @Temporal(TemporalType.DATE)  // Ensuring only the date is stored
     private Date receivingDate;
+
+    
+
 }

@@ -52,7 +52,9 @@ public class RecipientController {
         updatedRecipient.setBloodTypeNeeded(recipientDetails.getBloodTypeNeeded());
         updatedRecipient.setUrgencyLevel(recipientDetails.getUrgencyLevel());
         updatedRecipient.setReceivingDate(recipientDetails.getReceivingDate());
+        updatedRecipient.setRequiredBloodVolume(recipientDetails.getRequiredBloodVolume());
 
+        
         recipientRepository.save(updatedRecipient);
         return ResponseEntity.ok(updatedRecipient);
     }

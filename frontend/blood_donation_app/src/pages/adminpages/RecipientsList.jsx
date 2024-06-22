@@ -48,11 +48,9 @@ export default function RecipientsList() {
     return new Date(dateString).toLocaleDateString();
   };
 
-
-  const handleaddrecipients = () => {
+  const handleAddRecipients = () => {
     navigate(`/addrecipients`);
   };
-
 
   return (
     <div>
@@ -66,6 +64,7 @@ export default function RecipientsList() {
                 <Table.HeadCell>Name</Table.HeadCell>
                 <Table.HeadCell>Contact Number</Table.HeadCell>
                 <Table.HeadCell>Blood Type Needed</Table.HeadCell>
+                <Table.HeadCell>Required Blood Volume (ml)</Table.HeadCell>
                 <Table.HeadCell>Urgency Level</Table.HeadCell>
                 <Table.HeadCell>Receiving Date</Table.HeadCell>
                 <Table.HeadCell>Actions</Table.HeadCell>
@@ -81,6 +80,7 @@ export default function RecipientsList() {
                     </Table.Cell>
                     <Table.Cell>{recipient.contactNumber}</Table.Cell>
                     <Table.Cell>{recipient.bloodTypeNeeded}</Table.Cell>
+                    <Table.Cell>{recipient.requiredBloodVolume}</Table.Cell>
                     <Table.Cell>{recipient.urgencyLevel}</Table.Cell>
                     <Table.Cell>{formatDate(recipient.receivingDate)}</Table.Cell>
                     <Table.Cell>
@@ -104,14 +104,13 @@ export default function RecipientsList() {
                 ))}
               </Table.Body>
             </Table>
-
-            <Button size="xl" onClick={() => handleaddrecipients()}
-                    style={{ marginTop: '20px', marginRight: '20px', float: 'right' }}
-                    >
-                        Add new recipients 
+            <Button
+              size="xl"
+              onClick={handleAddRecipients}
+              style={{ marginTop: '20px', marginRight: '20px', float: 'right' }}
+            >
+              Add new recipient
             </Button>
-
-
           </div>
         </div>
       </div>
