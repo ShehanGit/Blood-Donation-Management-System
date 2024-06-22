@@ -9,6 +9,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import DonerList from './pages/adminpages/DonerList';
 import ApoinmentList from './pages/adminpages/ApointmentList';
 import Recipients from './pages/adminpages/RecipientsList';
+import AddRecipients from './pages/adminpages/AddRecipients';
 
 
 
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/donerlist" element={<DonerList />} />
           <Route exact path="/apoinmentlist" element={<ApoinmentList />} />
           <Route exact path="/Recipients" element={<Recipients />} />
+          <Route exact path="/addrecipients" element={<AddRecipients />} />
 
 
         </Routes>

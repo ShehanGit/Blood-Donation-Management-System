@@ -48,6 +48,12 @@ export default function RecipientsList() {
     return new Date(dateString).toLocaleDateString();
   };
 
+
+  const handleaddrecipients = () => {
+    navigate(`/addrecipients`);
+  };
+
+
   return (
     <div>
       <NavBar />
@@ -99,10 +105,10 @@ export default function RecipientsList() {
               </Table.Body>
             </Table>
 
-            <Button size="xl" onClick={() => handleUpdate()}
+            <Button size="xl" onClick={() => handleaddrecipients()}
                     style={{ marginTop: '20px', marginRight: '20px', float: 'right' }}
                     >
-                        Add new recipients
+                        Add new recipients 
             </Button>
 
 
