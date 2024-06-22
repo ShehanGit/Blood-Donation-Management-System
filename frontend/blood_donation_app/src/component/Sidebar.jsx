@@ -24,11 +24,11 @@ const SideBar = () => {
           <Sidebar.Item href="/Recipients" icon={HiUser}>
           Recipients
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiShoppingBag}>
-            Products
+          <Sidebar.Item href="/bloodInventory" icon={HiShoppingBag}>
+          blood inventory
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiArrowSmRight}>
-            Sign In
+          Donation
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiTable}>
             Sign Up
