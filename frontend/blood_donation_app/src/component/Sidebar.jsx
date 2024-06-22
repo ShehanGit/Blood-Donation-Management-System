@@ -27,7 +27,7 @@ const SideBar = () => {
           <Sidebar.Item href="/bloodInventory" icon={HiShoppingBag}>
           blood inventory
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiArrowSmRight}>
+          <Sidebar.Item href="/donationlist" icon={HiArrowSmRight}>
           Donation
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiTable}>
