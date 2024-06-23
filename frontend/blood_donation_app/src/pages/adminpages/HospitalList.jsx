@@ -3,53 +3,49 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../../component/NavBar";
 import Sidebar from "../../component/Sidebar";
 import { Table, Button } from "flowbite-react";
-import { getDonationList, deleteDonation } from "../../services/DonationServices"; // Assuming you have these service functions
+import { getHospitalList, deleteHospital } from "../../services/HospitalServices"; // Assuming you have these service functions
 
 export default function HospitalList() {
-  const [donations, setDonations] = useState([]);
+  const [hospitals, setHospitals] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchDonationDetails = async () => {
+    const fetchHospitalDetails = async () => {
       try {
-        const response = await getDonationList();
+        const response = await getHospitalList();
         if (response.status === 200) {
-          setDonations(response.data);
+          setHospitals(response.data);
         } else {
-          console.error("Error fetching donation details", response.status);
+          console.error("Error fetching hospital details", response.status);
         }
       } catch (error) {
-        console.error("Error fetching donation details:", error);
+        console.error("Error fetching hospital details:", error);
       }
     };
 
-    fetchDonationDetails();
+    fetchHospitalDetails();
   }, []);
 
-  const handleUpdate = (donationId) => {
-    navigate(`/donationupdate/${donationId}`);
+  const handleUpdate = (hospitalId) => {
+    navigate(`/hospitalupdate/${hospitalId}`);
   };
 
-  const handleadddonation = () => {
-    navigate(`/Adddonation`);
+  const handleAddHospital = () => {
+    navigate(`/addhospital`);
   };
 
-  const handleDelete = async (donationId) => {
+  const handleDelete = async (hospitalId) => {
     try {
-      await deleteDonation(donationId);
-      const response = await getDonationList();
+      await deleteHospital(hospitalId);
+      const response = await getHospitalList();
       if (response.status === 200) {
-        setDonations(response.data);
+        setHospitals(response.data);
       } else {
-        console.error("Error refetching donations after deletion", response.status);
+        console.error("Error refetching hospitals after deletion", response.status);
       }
     } catch (error) {
-      console.error("Error deleting donation:", error);
+      console.error("Error deleting hospital:", error);
     }
-  };
-
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString();
   };
 
   return (
@@ -61,40 +57,36 @@ export default function HospitalList() {
           <div className="overflow-x-auto">
             <Table striped>
               <Table.Head>
-                <Table.HeadCell>Donor ID</Table.HeadCell>
-                <Table.HeadCell>Date of Donation</Table.HeadCell>
-                <Table.HeadCell>Location</Table.HeadCell>
-                <Table.HeadCell>Volume Donated (ml)</Table.HeadCell>
-                <Table.HeadCell>Blood Type</Table.HeadCell>
-                <Table.HeadCell>Status</Table.HeadCell>
+                <Table.HeadCell>Hospital ID</Table.HeadCell>
+                <Table.HeadCell>Name</Table.HeadCell>
+                <Table.HeadCell>Address</Table.HeadCell>
+                <Table.HeadCell>Contact Info</Table.HeadCell>
                 <Table.HeadCell>Actions</Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y">
-                {donations.map((donation) => (
+                {hospitals.map((hospital) => (
                   <Table.Row
-                    key={donation.donationId}
+                    key={hospital.hospitalId}
                     className="bg-white dark:border-gray-700 dark:bg-gray-800"
                   >
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                      {donation.donor.donorId}
+                      {hospital.hospitalId}
                     </Table.Cell>
-                    <Table.Cell>{formatDate(donation.dateOfDonation)}</Table.Cell>
-                    <Table.Cell>{donation.location}</Table.Cell>
-                    <Table.Cell>{donation.volumeDonated}</Table.Cell>
-                    <Table.Cell>{donation.bloodType}</Table.Cell>
-                    <Table.Cell>{donation.status}</Table.Cell>
+                    <Table.Cell>{hospital.name}</Table.Cell>
+                    <Table.Cell>{hospital.address || 'N/A'}</Table.Cell>
+                    <Table.Cell>{hospital.contactInfo || 'N/A'}</Table.Cell>
                     <Table.Cell>
                       <div className="flex space-x-2">
                         <Button
                           size="xs"
-                          onClick={() => handleUpdate(donation.donationId)}
+                          onClick={() => handleUpdate(hospital.hospitalId)}
                         >
                           Update
                         </Button>
                         <Button
                           size="xs"
                           color="failure"
-                          onClick={() => handleDelete(donation.donationId)}
+                          onClick={() => handleDelete(hospital.hospitalId)}
                         >
                           Delete
                         </Button>
@@ -105,11 +97,12 @@ export default function HospitalList() {
               </Table.Body>
             </Table>
 
-
-            <Button size="xl" onClick={() => handleadddonation()}
-                    style={{ marginTop: '20px', marginRight: '20px', float: 'right' }}
-                    >
-                        Add new Donation 
+            <Button
+              size="xl"
+              onClick={handleAddHospital}
+              style={{ marginTop: '20px', marginRight: '20px', float: 'right' }}
+            >
+              Add new Hospital
             </Button>
 
           </div>
