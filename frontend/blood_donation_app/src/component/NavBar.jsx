@@ -11,7 +11,7 @@ const NavBar = () => {
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
-      navigate('/register'); // Navigates to the "/register" page
+      navigate('/dashboard'); // Navigates to the "/register" page
     };
 
     const handleButtonClick1 = () => {
@@ -27,9 +27,10 @@ const NavBar = () => {
         <span onClick={handleButtonClick1} className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white">BloodFlow</span>
       </Navbar.Brand>
       <div className="flex md:order-2">
-        <Button onClick={handleButtonClick}>Get started</Button>
+        <Button onClick={handleButtonClick} style={{ width: '150px' }}>Sign In</Button>
         <Navbar.Toggle />
       </div>
+
       <Navbar.Collapse>
         <Navbar.Link href="#" active>
           Home

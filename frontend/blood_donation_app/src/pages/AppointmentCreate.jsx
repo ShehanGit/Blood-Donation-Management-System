@@ -92,7 +92,7 @@ export default function AppointmentCreate() {
                 />
                 {errors.location && <div className="text-red-500">{errors.location}</div>}
               </div>
-              <div>
+              <div className="md:col-span-2"> {/* Adjusted to make the date input full width */}
                 <label htmlFor="date" className="block mb-2 text-lg font-medium text-left text-white">Date</label>
                 <input
                   type="date"
@@ -102,7 +102,7 @@ export default function AppointmentCreate() {
                   onChange={(e) => setDate(e.target.value)}
                   required
                 />
-                {errors.date && <div className="text-red-500">{errors.date}</div>}
+                {errors.scheduledDate && <div className="text-red-500">{errors.scheduledDate}</div>}
               </div>
             </div>
             <div className="flex items-start mb-6">

@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.Date;  
+import java.util.Date;
 
 @Getter
 @Setter
@@ -24,6 +24,10 @@ public class Recipient {
     @Column(name = "contact_number")
     private String contactNumber;
 
+    @ManyToOne
+    @JoinColumn(name = "hospital_id") // Foreign key column
+    private Hospital medicalCenter;
+    
     @Column(name = "blood_type_needed")
     private String bloodTypeNeeded;
 
@@ -36,7 +40,4 @@ public class Recipient {
     @Column(name = "receiving_date")
     @Temporal(TemporalType.DATE)  // Ensuring only the date is stored
     private Date receivingDate;
-
-    
-
 }

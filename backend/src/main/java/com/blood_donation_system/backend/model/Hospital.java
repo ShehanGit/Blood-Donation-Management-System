@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,4 +26,7 @@ public class Hospital {
 
     @Column(name = "contact_info")
     private String contactInfo;
+
+    @OneToMany(mappedBy = "medicalCenter")
+    private List<Recipient> recipients;
 }
