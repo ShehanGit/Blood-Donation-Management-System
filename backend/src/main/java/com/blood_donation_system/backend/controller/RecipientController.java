@@ -53,7 +53,6 @@ public class RecipientController {
         updatedRecipient.setUrgencyLevel(recipientDetails.getUrgencyLevel());
         updatedRecipient.setReceivingDate(recipientDetails.getReceivingDate());
         updatedRecipient.setRequiredBloodVolume(recipientDetails.getRequiredBloodVolume());
-        updatedRecipient.setMedicalCenter(recipientDetails.getMedicalCenter());
         
 
         
