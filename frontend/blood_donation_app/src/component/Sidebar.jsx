@@ -30,8 +30,8 @@ const SideBar = () => {
           <Sidebar.Item href="/donationlist" icon={HiArrowSmRight}>
           Donation
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={HiTable}>
-            Sign Up
+          <Sidebar.Item href="/hospitallist" icon={HiTable}>
+          Hospitals
           </Sidebar.Item>
         </Sidebar.ItemGroup>
         <Sidebar.ItemGroup>

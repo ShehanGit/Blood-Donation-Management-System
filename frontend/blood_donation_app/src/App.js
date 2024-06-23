@@ -13,8 +13,7 @@ import AddRecipients from './pages/adminpages/AddRecipients';
 import BloodInventory from './pages/adminpages/bloodInventory';
 import DonationList from './pages/adminpages/DonationList';
 import AddDonation from './pages/adminpages/DonationAdd';
-
-
+import HospitalList from './pages/adminpages/HospitalList';
 
 
 
@@ -34,6 +33,7 @@ function App() {
           <Route exact path="/bloodinventory" element={<BloodInventory />} />
           <Route exact path="/donationlist" element={<DonationList />} />
           <Route exact path="/Adddonation" element={<AddDonation />} />
+          <Route exact path="/hospitallist" element={<HospitalList />} />
         </Routes>
       </Router>
     </div>
