@@ -14,6 +14,8 @@ import BloodInventory from './pages/adminpages/bloodInventory';
 import DonationList from './pages/adminpages/DonationList';
 import AddDonation from './pages/adminpages/DonationAdd';
 import HospitalList from './pages/adminpages/HospitalList';
+import Dashboard from './pages/adminpages/Dashboard';
+
 
 
 
@@ -34,6 +36,7 @@ function App() {
           <Route exact path="/donationlist" element={<DonationList />} />
           <Route exact path="/Adddonation" element={<AddDonation />} />
           <Route exact path="/hospitallist" element={<HospitalList />} />
+          <Route exact path="/dashboard1" element={<Dashboard />} />
         </Routes>
       </Router>
     </div>

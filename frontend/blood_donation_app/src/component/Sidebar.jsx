@@ -12,7 +12,7 @@ const SideBar = () => {
             <Sidebar aria-label="Sidebar with content separator example"  >
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={HiChartPie}>
+          <Sidebar.Item href="/dashboard1" icon={HiChartPie}>
             Dashboard
           </Sidebar.Item>
           <Sidebar.Item href="/donerlist" icon={HiViewBoards}>
