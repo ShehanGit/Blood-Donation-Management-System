@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../../component/NavBar";
 import Sidebar from "../../component/Sidebar";
 import '../../css/AddRecipient.css';
-import { createRecipient } from "../../services/ResipientService";
+import { createRecipient } from "../../services/ResipientService"; // Ensure you have a service to fetch hospitals
+import { getHospitalList } from "../../services/HospitalServices"; // Ensure you have a service to fetch hospitals
 
 export default function AddRecipients() {
   const [name, setName] = useState('');
@@ -12,6 +13,7 @@ export default function AddRecipients() {
   const [urgencyLevel, setUrgencyLevel] = useState('');
   const [receivingDate, setReceivingDate] = useState('');
   const [hospitalId, setHospitalId] = useState('');
+  const [hospitals, setHospitals] = useState([]);
   const [errors, setErrors] = useState({
     name: '',
     contactNumber: '',
@@ -21,6 +23,14 @@ export default function AddRecipients() {
     receivingDate: '',
     hospitalId: ''
   });
+
+  useEffect(() => {
+    // Fetch the list of hospitals from the database
+    getHospitalList().then(response => {
+      setHospitals(response.data);
+      console.log(response.data);
+    });
+  }, []);
 
   const validateForm = () => {
     let isValid = true;
@@ -51,7 +61,7 @@ export default function AddRecipients() {
       isValid = false;
     }
     if (!hospitalId) {
-      newErrors.hospitalId = 'Hospital ID is required';
+      newErrors.hospitalId = 'Hospital is required';
       isValid = false;
     }
 
@@ -192,17 +202,22 @@ export default function AddRecipients() {
                 </div>
                 <div>
                   <label htmlFor="hospitalId" className="block mb-2 text-lg font-medium text-left text-white">
-                    Hospital ID
+                    Hospital
                   </label>
-                  <input
-                    type="number"
+                  <select
                     id="hospitalId"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 placeholder-black dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="1"
                     value={hospitalId}
                     onChange={(e) => setHospitalId(e.target.value)}
                     required
-                  />
+                  >
+                    <option value="">Select Hospital</option>
+                    {hospitals.map((hospital) => (
+                      <option key={hospital.hospitalId} value={hospital.hospitalId}>
+                        {hospital.name}
+                      </option>
+                    ))}
+                  </select>
                   {errors.hospitalId && <div className="text-red-500">{errors.hospitalId}</div>}
                 </div>
               </div>

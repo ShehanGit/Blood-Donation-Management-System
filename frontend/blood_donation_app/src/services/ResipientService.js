@@ -11,3 +11,5 @@ export const getRecipientById = (recipientId) => axios.get(`${REST_API_BASE_URL}
 export const deleteRecipient = (recipientId) => axios.delete(`${REST_API_BASE_URL}/${recipientId}`);
 
 export const updateRecipient = (recipientId, recipient) => axios.put(`${REST_API_BASE_URL}/${recipientId}`, recipient);
+
+
