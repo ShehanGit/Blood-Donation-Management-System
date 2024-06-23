@@ -1,34 +1,33 @@
 import React from "react";
 import '../css/Home.css';
-
 import NavBar from '../component/NavBar';
 import { useNavigate } from 'react-router-dom';
+// import heroImage from '../Images/heroImage.png';
+import heroImage from '../Images/heroImage2.jpg';
 
 
 export default function Home() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate('/appointment'); 
+  };
 
-        const handleButtonClick = () => {
-        navigate('/appointment'); 
-      };
-
-      const handleButtonClick1 = () => {
-        navigate('/dashboard'); 
-      };
-
-      
   return (
     <div>
-            <NavBar/>
-            <div className="flex justify-start">
-                <button onClick={handleButtonClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-9 rounded ml-10">
-                    appointment
-                </button>
-                <button onClick={handleButtonClick1} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-9 rounded ml-10">
-                    Admin
-                </button>
-    </div>
+      <NavBar />
+      <div className="hero-section">
+        <div className="hero-content">
+          <h1>Your Blood Can Save Lives</h1>
+          <p>Every drop counts. Make a difference today.</p>
+          <button onClick={handleButtonClick} className="cta-button">
+            Donate Now
+          </button>
+        </div>
+        <div className="hero-image">
+          <img src={heroImage} alt="Hero" />
+        </div>
+      </div>
     </div>
   );
 }
