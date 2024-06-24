@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom'; // Import useParams to access route parameters
 import '../css/AppointmentCreate.css';
 import NavBar from "../component/NavBar";
-import { createAppointment } from "../services/AppointmentServices"; // Make sure you have this service
+import { createAppointment } from "../services/AppointmentServices"; // Ensure this service is correctly implemented
 
 export default function AppointmentCreate() {
+  const { locationId } = useParams(); // Extract the locationId from the URL
   const [donorId, setDonorId] = useState('');
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState(''); // This will be set by useEffect
   const [scheduledDate, setDate] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [errors, setErrors] = useState({
@@ -14,6 +16,11 @@ export default function AppointmentCreate() {
     scheduledDate: '',
     termsAccepted: '',
   });
+
+  // Set the location input to the locationId from the URL when component mounts
+  useEffect(() => {
+    setLocation(locationId || ''); // Default to empty string if locationId is undefined
+  }, [locationId]);
 
   const validateForm = () => {
     let isValid = true;
@@ -44,18 +51,24 @@ export default function AppointmentCreate() {
     e.preventDefault();
     if (validateForm()) {
       const appointmentDetails = {
-        donor: {
-          donorId: donorId,
-        },
+             "donor": {
+                   "donorId": 3 
+      },
         location: location,
         scheduledDate: scheduledDate + 'T14:00:00Z', // Append time if only date is selected
+        termsAccepted: termsAccepted
       };
-      console.log(appointmentDetails);
-      // Proceed with form submission (e.g., API call)
 
-      createAppointment(appointmentDetails).then((Response) => {
-        console.log(Response.scheduledDate);
-      });
+      console.log("Submitting:", appointmentDetails); // Debugging line
+      createAppointment(appointmentDetails)
+        .then(response => {
+          console.log("Appointment created successfully:", response);
+          // Redirect or display a success message here
+        })
+        .catch(error => {
+          console.error("Failed to create appointment:", error);
+          // Display error messages here
+        });
     }
   };
 
@@ -72,7 +85,7 @@ export default function AppointmentCreate() {
                   type="text"
                   id="donor_id"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 placeholder-black dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="D12345"
+                  placeholder="Enter Donor ID"
                   value={donorId}
                   onChange={(e) => setDonorId(e.target.value)}
                   required
@@ -92,7 +105,7 @@ export default function AppointmentCreate() {
                 />
                 {errors.location && <div className="text-red-500">{errors.location}</div>}
               </div>
-              <div className="md:col-span-2"> {/* Adjusted to make the date input full width */}
+              <div className="md:col-span-2">
                 <label htmlFor="date" className="block mb-2 text-lg font-medium text-left text-white">Date</label>
                 <input
                   type="date"
