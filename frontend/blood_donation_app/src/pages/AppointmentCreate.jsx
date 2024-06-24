@@ -19,10 +19,10 @@ function AppointmentCreate() {
 
   useEffect(() => {
     // Update the donorId state if the URL parameter changes
-    if (donorId) {
-      setDonorIdState(donorId);
+    if (location) {
+      setDonorIdState(location);
     }
-  }, [donorId]); // React to changes in donorId
+  }, [location]); // React to changes in donorId
 
   const validateForm = () => {
     let isValid = true;
@@ -108,13 +108,14 @@ function AppointmentCreate() {
               <div className="md:col-span-2">
                 <label htmlFor="date" className="block mb-2 text-lg font-medium text-left text-white">Date</label>
                 <input
-                  type="date"
-                  id="date"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  value={scheduledDate}
-                  onChange={(e) => setDate(e.target.value)}
-                  required
-                />
+  type="datetime-local" // Change 'date' to 'datetime-local'
+  id="date"
+  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+  value={scheduledDate}
+  onChange={(e) => setDate(e.target.value)}
+  required
+/>
+
                 {errors.scheduledDate && <div className="text-red-500">{errors.scheduledDate}</div>}
               </div>
             </div>

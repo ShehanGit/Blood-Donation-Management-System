@@ -1,8 +1,6 @@
-package com.blood_donation_system.backend.model;
+ppackage com.blood_donation_system.backend.model;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,7 +10,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long appointmentId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "donor_id", nullable = false)
     private Donor donor;
 
@@ -24,6 +22,17 @@ public class Appointment {
 
     @Column(name = "appointment_status", nullable = false)
     private String appointmentStatus;
+
+    // Constructors
+    public Appointment() {
+    }
+
+    public Appointment(Donor donor, LocalDateTime scheduledDate, String location, String appointmentStatus) {
+        this.donor = donor;
+        this.scheduledDate = scheduledDate;
+        this.location = location;
+        this.appointmentStatus = appointmentStatus;
+    }
 
     // Getters and Setters
     public Long getAppointmentId() {
