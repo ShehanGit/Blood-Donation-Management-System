@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../component/NavBar";
 import Sidebar from "../../component/Sidebar";
-import { Bar } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import { Button } from "flowbite-react";
 
 import { Chart, registerables } from 'chart.js';
@@ -62,7 +62,13 @@ export default function Dashboard() {
     return acc;
   }, {});
 
-  const chartData = {
+  const monthlyData = donations.reduce((acc, donation) => {
+    const month = new Date(donation.dateOfDonation).toLocaleString('default', { month: 'short', year: 'numeric' });
+    acc[month] = (acc[month] || 0) + donation.volumeDonated;
+    return acc;
+  }, {});
+
+  const barChartData = {
     labels: Object.keys(bloodTypeData),
     datasets: [
       {
@@ -88,6 +94,20 @@ export default function Dashboard() {
           'rgba(199, 199, 199, 1)',
           'rgba(83, 102, 102, 1)',
         ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const lineChartData = {
+    labels: Object.keys(monthlyData),
+    datasets: [
+      {
+        label: 'Monthly Donations (ml)',
+        data: Object.values(monthlyData),
+        fill: false,
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
       },
     ],
@@ -126,8 +146,12 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="chart-container">
-            <Bar data={chartData} options={chartOptions} />
+            <Bar data={barChartData} options={chartOptions} />
           </div>
+          <div className="chart-container">
+            <Line data={lineChartData} options={chartOptions} />
+          </div>
+          <Button onClick={handleAddDonation}>Add Donation</Button>
         </div>
       </div>
     </div>
