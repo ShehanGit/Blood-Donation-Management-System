@@ -50,5 +50,5 @@ public class Campaign {
 //    Cancelled: The campaign was planned but has been cancelled.
 //    Postponed: The campaign has been delayed to a later date.
 //    Suspended: The campaign is temporarily halted but may resume later.
-    
+
 }

@@ -6,14 +6,17 @@ import { Bar } from "react-chartjs-2";
 import { Button } from "flowbite-react";
 
 import { Chart, registerables } from 'chart.js';
-import { getDonationList } from "../../services/DonationServices"; // Assuming you have these service functions
-import "../../css/Dashboard.css"; // Make sure to create this CSS file for custom styles
+import { getDonationList, getAppointmentStats } from "../../services/DonationServices";
+import "../../css/Dashboard.css";
 
 // Register Chart.js components
 Chart.register(...registerables);
 
 export default function Dashboard() {
   const [donations, setDonations] = useState([]);
+  const [totalAppointments, setTotalAppointments] = useState(0);
+  const [donationsToday, setDonationsToday] = useState(0);
+  const [upcomingAppointments, setUpcomingAppointments] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,7 +33,24 @@ export default function Dashboard() {
       }
     };
 
+    const fetchAppointmentStats = async () => {
+      try {
+        const response = await getAppointmentStats();
+        if (response.status === 200) {
+          const { totalAppointments, donationsToday, upcomingAppointments } = response.data;
+          setTotalAppointments(totalAppointments);
+          setDonationsToday(donationsToday);
+          setUpcomingAppointments(upcomingAppointments);
+        } else {
+          console.error("Error fetching appointment stats", response.status);
+        }
+      } catch (error) {
+        console.error("Error fetching appointment stats:", error);
+      }
+    };
+
     fetchDonationDetails();
+    fetchAppointmentStats();
   }, []);
 
   const handleAddDonation = () => {
@@ -88,10 +108,26 @@ export default function Dashboard() {
         <Sidebar style={{ flex: "0 0 250px" }} />
         <div className="center-container">
           <h1 className="chart-heading">Blood Donation Overview</h1>
+          <div className="counters">
+            <div className="counter-card">
+              <div className="counter-card-icon">📅</div>
+              <h2>Total Appointments</h2>
+              <p>{totalAppointments}</p>
+            </div>
+            <div className="counter-card">
+              <div className="counter-card-icon">🩸</div>
+              <h2>Donations Today</h2>
+              <p>{donationsToday}</p>
+            </div>
+            <div className="counter-card">
+              <div className="counter-card-icon">📆</div>
+              <h2>Upcoming Appointments</h2>
+              <p>{upcomingAppointments}</p>
+            </div>
+          </div>
           <div className="chart-container">
             <Bar data={chartData} options={chartOptions} />
           </div>
-
         </div>
       </div>
     </div>

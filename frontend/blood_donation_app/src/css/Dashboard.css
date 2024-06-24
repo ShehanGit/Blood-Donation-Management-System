@@ -57,3 +57,76 @@
   font-size: 1.5em;
   font-weight: bold;
 }
+.counters {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.counter {
+  text-align: center;
+}
+
+.counter h2 {
+  margin-bottom: 10px;
+}
+
+.counter p {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Existing styles */
+
+.center-container {
+  flex: 1;
+  padding: 20px;
+}
+
+.chart-heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  width: 100%;
+  height: 400px;
+  margin: 0 auto;
+}
+
+.counters {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.counter-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  width: 30%;
+  transition: transform 0.2s;
+}
+
+.counter-card:hover {
+  transform: translateY(-10px);
+}
+
+.counter-card h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.counter-card p {
+  font-size: 2em;
+  font-weight: bold;
+  color: #0a1047; /* Green color */
+}
+
+.counter-card-icon {
+  font-size: 3em;
+  margin-bottom: 10px;
+  color: #4CAF50;
+}

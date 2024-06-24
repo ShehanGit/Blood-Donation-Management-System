@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -64,5 +65,39 @@ public class AppointmentController {
         );
         appointmentRepository.delete(appointment);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    // Get appointment statistics
+    @GetMapping("/stats")
+    public ResponseEntity<?> getAppointmentStats() {
+        long totalAppointments = appointmentRepository.count();
+        long donationsToday = appointmentRepository.countByScheduledDate(LocalDate.now());
+        long upcomingAppointments = appointmentRepository.countByScheduledDateBetween(LocalDate.now(), LocalDate.now().plusWeeks(1));
+
+        return ResponseEntity.ok(new AppointmentStats(totalAppointments, donationsToday, upcomingAppointments));
+    }
+
+    private static class AppointmentStats {
+        private final long totalAppointments;
+        private final long donationsToday;
+        private final long upcomingAppointments;
+
+        public AppointmentStats(long totalAppointments, long donationsToday, long upcomingAppointments) {
+            this.totalAppointments = totalAppointments;
+            this.donationsToday = donationsToday;
+            this.upcomingAppointments = upcomingAppointments;
+        }
+
+        public long getTotalAppointments() {
+            return totalAppointments;
+        }
+
+        public long getDonationsToday() {
+            return donationsToday;
+        }
+
+        public long getUpcomingAppointments() {
+            return upcomingAppointments;
+        }
     }
 }
