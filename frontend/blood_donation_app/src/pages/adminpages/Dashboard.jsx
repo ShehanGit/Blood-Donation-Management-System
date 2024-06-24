@@ -68,6 +68,9 @@ export default function Dashboard() {
     return acc;
   }, {});
 
+  // Sort monthly data keys in chronological order
+  const sortedMonthlyKeys = Object.keys(monthlyData).sort((a, b) => new Date(a) - new Date(b));
+
   const barChartData = {
     labels: Object.keys(bloodTypeData),
     datasets: [
@@ -100,15 +103,16 @@ export default function Dashboard() {
   };
 
   const lineChartData = {
-    labels: Object.keys(monthlyData),
+    labels: sortedMonthlyKeys,
     datasets: [
       {
         label: 'Monthly Donations (ml)',
-        data: Object.values(monthlyData),
+        data: sortedMonthlyKeys.map(key => monthlyData[key]),
         fill: false,
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
+        tension: 0.4, // Add this for rounded lines
       },
     ],
   };
