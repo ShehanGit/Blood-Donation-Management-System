@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import '../css/AppointmentCreate.css';
 import NavBar from "../component/NavBar";
-import { createAppointment } from "../services/AppointmentServices"; // Make sure you have this service
+import { createAppointment } from "../services/AppointmentServices"; // Make sure this service exists
 
-export default function AppointmentCreate() {
-  const [donorId, setDonorId] = useState('');
+function AppointmentCreate() {
+  const { donorId } = useParams(); // Retrieve donorId from URL parameters
+  const [donorIdState, setDonorIdState] = useState(donorId || ''); // Initialize state with URL parameter
   const [location, setLocation] = useState('');
   const [scheduledDate, setDate] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -15,11 +17,18 @@ export default function AppointmentCreate() {
     termsAccepted: '',
   });
 
+  useEffect(() => {
+    // Update the donorId state if the URL parameter changes
+    if (donorId) {
+      setDonorIdState(donorId);
+    }
+  }, [donorId]); // React to changes in donorId
+
   const validateForm = () => {
     let isValid = true;
     const newErrors = {};
 
-    if (!donorId) {
+    if (!donorIdState) {
       newErrors.donorId = 'Donor ID is required';
       isValid = false;
     }
@@ -45,24 +54,28 @@ export default function AppointmentCreate() {
     if (validateForm()) {
       const appointmentDetails = {
         donor: {
-          donorId: donorId,
+          donorId: donorIdState,
         },
         location: location,
         scheduledDate: scheduledDate,
       };
-      console.log(appointmentDetails);
-      // Proceed with form submission (e.g., API call)
-
-      createAppointment(appointmentDetails).then((Response) => {
-        console.log(Response.scheduledDate);
-      });
+      console.log(appointmentDetails); // Debugging line
+      createAppointment(appointmentDetails)
+        .then(response => {
+          console.log("Appointment created successfully:", response);
+          // Redirect or update UI upon successful creation
+        })
+        .catch(error => {
+          console.error("Failed to create appointment:", error);
+          // Handle errors, e.g., show user feedback
+        });
     }
   };
 
   return (
     <div>
       <NavBar />
-      <div className="center-container2">
+      <div className="center-container5">
         <div className="container1">
           <form className="p-6" onSubmit={handleSubmit}>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
@@ -71,10 +84,10 @@ export default function AppointmentCreate() {
                 <input
                   type="text"
                   id="donor_id"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 placeholder-black dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="D12345"
-                  value={donorId}
-                  onChange={(e) => setDonorId(e.target.value)}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  placeholder="Enter Donor ID"
+                  value={donorIdState}
+                  onChange={(e) => setDonorIdState(e.target.value)}
                   required
                 />
                 {errors.donorId && <div className="text-red-500">{errors.donorId}</div>}
@@ -84,20 +97,20 @@ export default function AppointmentCreate() {
                 <input
                   type="text"
                   id="location"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 placeholder-black dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Donation Center Name"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  placeholder="Enter Location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   required
                 />
                 {errors.location && <div className="text-red-500">{errors.location}</div>}
               </div>
-              <div className="md:col-span-2"> {/* Adjusted to make the date input full width */}
+              <div className="md:col-span-2">
                 <label htmlFor="date" className="block mb-2 text-lg font-medium text-left text-white">Date</label>
                 <input
                   type="date"
                   id="date"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 placeholder-black dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   value={scheduledDate}
                   onChange={(e) => setDate(e.target.value)}
                   required
@@ -110,18 +123,18 @@ export default function AppointmentCreate() {
                 <input
                   id="terms"
                   type="checkbox"
-                  className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                  className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
                   checked={termsAccepted}
                   onChange={(e) => setTermsAccepted(e.target.checked)}
                   required
                 />
               </div>
-              <label htmlFor="terms" className="ml-2 text-lg font-medium text-left text-white dark:text-gray-300">
-                I agree with the <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.
+              <label htmlFor="terms" className="ml-2 text-lg font-medium text-left text-white">
+                I agree with the <a href="#" className="text-blue-600 hover:underline">terms and conditions</a>.
               </label>
               {errors.termsAccepted && <div className="text-red-500">{errors.termsAccepted}</div>}
             </div>
-            <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center">
               Submit
             </button>
           </form>
@@ -130,3 +143,5 @@ export default function AppointmentCreate() {
     </div>
   );
 }
+
+export default AppointmentCreate;

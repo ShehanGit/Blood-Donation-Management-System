@@ -16,6 +16,7 @@ import AddDonation from './pages/adminpages/DonationAdd';
 import HospitalList from './pages/adminpages/HospitalList';
 import Dashboard from './pages/adminpages/Dashboard';
 import Map from './pages/Map';
+import AppointmentPage from './pages/AppointmentCreate';
 
 
 
@@ -39,7 +40,7 @@ function App() {
           <Route exact path="/hospitallist" element={<HospitalList />} />
           <Route exact path="/dashboard1" element={<Dashboard />} />
           <Route exact path="/map" element={<Map />} />
-        </Routes>
+          <Route path="/create-appointment/:donorId" element={<AppointmentCreate />} />        </Routes>
       </Router>
     </div>
   );
