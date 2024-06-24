@@ -54,7 +54,7 @@ export default function Dashboard() {
   }, []);
 
   const handleAddDonation = () => {
-    navigate(`/AddDonation`);
+    navigate('/AddDonation');
   };
 
   const bloodTypeData = donations.reduce((acc, donation) => {
@@ -155,7 +155,6 @@ export default function Dashboard() {
           <div className="chart-container">
             <Line data={lineChartData} options={chartOptions} />
           </div>
-          <Button onClick={handleAddDonation}>Add Donation</Button>
         </div>
       </div>
     </div>
