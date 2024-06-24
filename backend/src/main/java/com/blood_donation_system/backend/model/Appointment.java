@@ -1,8 +1,16 @@
-ppackage com.blood_donation_system.backend.model;
+package com.blood_donation_system.backend.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import java.util.Date;  // Import Date for handling date fields
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "appointments")
 public class Appointment {
@@ -10,68 +18,17 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long appointmentId;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "donor_id", nullable = false)
+    @ManyToOne  // Establishing Many-To-One relationship with Donor
+    @JoinColumn(name = "donor_id", nullable = false)  // Donor_ID as a foreign key
     private Donor donor;
 
-    @Column(name = "scheduled_date", nullable = false)
-    private LocalDateTime scheduledDate;
+    @Column(name = "scheduled_date")
+    @Temporal(TemporalType.TIMESTAMP)  // Adjusted to handle both date and time
+    private Date scheduledDate;
 
-    @Column(name = "location", nullable = false)
+    @Column(name = "location")
     private String location;
 
-    @Column(name = "appointment_status", nullable = false)
+    @Column(name = "appointment_status")
     private String appointmentStatus;
-
-    // Constructors
-    public Appointment() {
-    }
-
-    public Appointment(Donor donor, LocalDateTime scheduledDate, String location, String appointmentStatus) {
-        this.donor = donor;
-        this.scheduledDate = scheduledDate;
-        this.location = location;
-        this.appointmentStatus = appointmentStatus;
-    }
-
-    // Getters and Setters
-    public Long getAppointmentId() {
-        return appointmentId;
-    }
-
-    public void setAppointmentId(Long appointmentId) {
-        this.appointmentId = appointmentId;
-    }
-
-    public Donor getDonor() {
-        return donor;
-    }
-
-    public void setDonor(Donor donor) {
-        this.donor = donor;
-    }
-
-    public LocalDateTime getScheduledDate() {
-        return scheduledDate;
-    }
-
-    public void setScheduledDate(LocalDateTime scheduledDate) {
-        this.scheduledDate = scheduledDate;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getAppointmentStatus() {
-        return appointmentStatus;
-    }
-
-    public void setAppointmentStatus(String appointmentStatus) {
-        this.appointmentStatus = appointmentStatus;
-    }
 }
