@@ -55,6 +55,8 @@ public class CampaignController {
         campaign.setOrganizer(campaignDetails.getOrganizer());
         campaign.setTotalDonations(campaignDetails.getTotalDonations());
         campaign.setStatus(campaignDetails.getStatus());
+        campaign.setLatitude(campaignDetails.getLatitude());
+        campaign.setLongitude(campaignDetails.getLongitude());
 
         Campaign updatedCampaign = campaignRepository.save(campaign);
         return ResponseEntity.ok(updatedCampaign);

@@ -106,7 +106,7 @@ export default function DonerRegister() {
     <div>
       <NavBar />
       <div className="center-container">
-        <div className="container1">
+        <div className="container3">
           <form className="p-6" onSubmit={handleSubmit}>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
               <div className="md:col-span-2">

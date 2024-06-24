@@ -33,6 +33,10 @@ const SideBar = () => {
           <Sidebar.Item href="/hospitallist" icon={HiTable}>
           Hospitals
           </Sidebar.Item>
+          <Sidebar.Item href="/map" icon={HiInbox}>
+            Map
+          </Sidebar.Item>
+          
         </Sidebar.ItemGroup>
         <Sidebar.ItemGroup>
           <Sidebar.Item href="#" icon={HiChartPie}>

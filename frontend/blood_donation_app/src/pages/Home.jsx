@@ -12,6 +12,7 @@ export default function Home() {
     navigate('/appointment'); 
   };
 
+
   return (
     <Flowbite>
       <div>
@@ -45,7 +46,7 @@ export default function Home() {
             <div className="icon">📅</div>
             <h3>Are you eligible?</h3>
             <p>Donating blood is safe and easy to do. Find out the general eligibility criteria.</p>
-            <button onClick={() => navigate('/eligibility')}>Eligibility</button>
+            <button onClick={() => navigate('/register')}>Eligibility</button>
           </div>
         </div>
       </div>

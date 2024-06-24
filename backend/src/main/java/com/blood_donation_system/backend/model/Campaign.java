@@ -44,6 +44,12 @@ public class Campaign {
     @Column(name = "status")
     private String status;
 
+    @Column(name = "latitude")
+    private Double latitude;
+
+    @Column(name = "longitude")
+    private Double longitude;
+
 //    Upcoming: The campaign is planned and will take place in the future.
 //    Ongoing: The campaign is currently in progress.
 //    Completed: The campaign has finished.

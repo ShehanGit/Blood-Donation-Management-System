@@ -130,7 +130,7 @@ export default function Dashboard() {
       <NavBar />
       <div style={{ display: "flex" }}>
         <Sidebar style={{ flex: "0 0 250px" }} />
-        <div className="center-container">
+        <div className="center-container2">
           <h1 className="chart-heading">Blood Donation Overview</h1>
           <div className="counters">
             <div className="counter-card">
