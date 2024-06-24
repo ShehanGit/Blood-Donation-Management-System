@@ -39,3 +39,21 @@
     }
   }
   
+.counters {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.counter {
+  text-align: center;
+}
+
+.counter h2 {
+  margin-bottom: 10px;
+}
+
+.counter p {
+  font-size: 1.5em;
+  font-weight: bold;
+}
