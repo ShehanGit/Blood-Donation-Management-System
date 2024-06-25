@@ -5,6 +5,7 @@ import Sidebar from "../../component/Sidebar";
 import { Bar, Line } from "react-chartjs-2";
 import { Chart, registerables } from 'chart.js';
 import { getDonationList, getAppointmentStats } from "../../services/DonationServices";
+import { getRecipientList } from "../../services/ResipientService"; // Import the recipient service
 import "../../css/Dashboard.css";
 import Footer1 from "../../component/Footer";
 
@@ -13,6 +14,7 @@ Chart.register(...registerables);
 
 export default function Dashboard() {
   const [donations, setDonations] = useState([]);
+  const [recipients, setRecipients] = useState([]);
   const [totalAppointments, setTotalAppointments] = useState(0);
   const [donationsToday, setDonationsToday] = useState(0);
   const [upcomingAppointments, setUpcomingAppointments] = useState(0);
@@ -48,8 +50,22 @@ export default function Dashboard() {
       }
     };
 
+    const fetchRecipientList = async () => {
+      try {
+        const response = await getRecipientList();
+        if (response.status === 200) {
+          setRecipients(response.data);
+        } else {
+          console.error("Error fetching recipient details", response.status);
+        }
+      } catch (error) {
+        console.error("Error fetching recipient details:", error);
+      }
+    };
+
     fetchDonationDetails();
     fetchAppointmentStats();
+    fetchRecipientList(); // Fetch the recipient data
   }, []);
 
   const handleAddDonation = () => {
@@ -67,8 +83,22 @@ export default function Dashboard() {
     return acc;
   }, {});
 
-  // Sort monthly data keys in chronological order
-  const sortedMonthlyKeys = Object.keys(monthlyData).sort((a, b) => new Date(a) - new Date(b));
+  const requiredMonthlyData = recipients.reduce((acc, recipient) => {
+    const month = new Date(recipient.receivingDate).toLocaleString('default', { month: 'short', year: 'numeric' });
+    acc[month] = (acc[month] || 0) + recipient.requiredBloodVolume;
+    return acc;
+  }, {});
+
+  // Combine the two datasets
+  const allMonths = [...new Set([...Object.keys(monthlyData), ...Object.keys(requiredMonthlyData)])];
+
+  const sortedMonthlyKeys = allMonths.sort((a, b) => {
+    const [aMonth, aYear] = a.split(' ');
+    const [bMonth, bYear] = b.split(' ');
+    const aDate = new Date(`${aMonth} 1, ${aYear}`);
+    const bDate = new Date(`${bMonth} 1, ${bYear}`);
+    return aDate - bDate;
+  });
 
   const barChartData = {
     labels: Object.keys(bloodTypeData),
@@ -106,10 +136,19 @@ export default function Dashboard() {
     datasets: [
       {
         label: 'Monthly Donations (ml)',
-        data: sortedMonthlyKeys.map(key => monthlyData[key]),
+        data: sortedMonthlyKeys.map(key => monthlyData[key] || 0),
         fill: false,
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+        tension: 0.4, // Add this for rounded lines
+      },
+      {
+        label: 'Monthly Required Volume (ml)',
+        data: sortedMonthlyKeys.map(key => requiredMonthlyData[key] || 0),
+        fill: false,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 99, 132, 1)',
         borderWidth: 1,
         tension: 0.4, // Add this for rounded lines
       },
