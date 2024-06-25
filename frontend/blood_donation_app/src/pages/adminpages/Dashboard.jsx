@@ -93,10 +93,8 @@ export default function Dashboard() {
   const allMonths = [...new Set([...Object.keys(monthlyData), ...Object.keys(requiredMonthlyData)])];
 
   const sortedMonthlyKeys = allMonths.sort((a, b) => {
-    const [aMonth, aYear] = a.split(' ');
-    const [bMonth, bYear] = b.split(' ');
-    const aDate = new Date(`${aMonth} 1, ${aYear}`);
-    const bDate = new Date(`${bMonth} 1, ${bYear}`);
+    const aDate = new Date(`${a.split(' ')[1]}-${a.split(' ')[0]}-01`);
+    const bDate = new Date(`${b.split(' ')[1]}-${b.split(' ')[0]}-01`);
     return aDate - bDate;
   });
 
@@ -159,7 +157,17 @@ export default function Dashboard() {
     scales: {
       y: {
         beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Volume (ml)'
+        }
       },
+      x: {
+        title: {
+          display: true,
+          text: 'Month'
+        }
+      }
     },
   };
 
