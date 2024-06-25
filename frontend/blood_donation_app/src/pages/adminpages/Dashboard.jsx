@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../../component/NavBar";
 import Sidebar from "../../component/Sidebar";
 import { Bar, Line } from "react-chartjs-2";
-import { Button } from "flowbite-react";
 import { Chart, registerables } from 'chart.js';
 import { getDonationList, getAppointmentStats } from "../../services/DonationServices";
 import "../../css/Dashboard.css";
@@ -130,7 +129,7 @@ export default function Dashboard() {
       <NavBar />
       <div style={{ display: "flex" }}>
         <Sidebar style={{ flex: "0 0 250px" }} />
-        <div className="center-container2">
+        <div className="center-container9">
           <h1 className="chart-heading">Blood Donation Overview</h1>
           <div className="counters">
             <div className="counter-card">
@@ -149,16 +148,17 @@ export default function Dashboard() {
               <p>{upcomingAppointments}</p>
             </div>
           </div>
-          <div className="chart-container">
-            <Bar data={barChartData} options={chartOptions} />
-          </div>
-          <div className="chart-container">
-            <Line data={lineChartData} options={chartOptions} />
+          <div className="charts-wrapper">
+            <div className="chart-container">
+              <Bar data={barChartData} options={chartOptions} />
+            </div>
+            <div className="chart-container">
+              <Line data={lineChartData} options={chartOptions} />
+            </div>
           </div>
         </div>
       </div>
       <Footer1/>
-
     </div>
   );
 }

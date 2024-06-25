@@ -4,27 +4,32 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.center-container2 {
+.center-container9 {
   flex: 1;
   padding: 20px;
-  /* background-color: #f8f9fa;  */
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center the content horizontally */
-  margin-top: 320px;
+  align-items: center;
 }
 
 .chart-heading {
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: #f3f3f3;
   margin-bottom: 20px;
   text-align: center;
 }
 
-.chart-container {
+.charts-wrapper {
+  display: flex;
+  justify-content: space-around;
   width: 100%;
-  max-width: 800px; /* Set a max width for the charts */
+  flex-wrap: wrap; /* Ensure responsiveness */
+}
+
+.chart-container {
+  width: 48%;
+  max-width: 800px;
   margin: 20px 0;
   background-color: rgb(255, 255, 255);
   padding: 20px;
@@ -77,6 +82,7 @@ body {
 
 @media (max-width: 768px) {
   .chart-container {
+    width: 100%;
     padding: 10px;
   }
 
