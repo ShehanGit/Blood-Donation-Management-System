@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { useNavigate } from 'react-router-dom'; // Use navigate instead of useHistory
 import NavBar from "../component/NavBar";
+import Footer1 from "../component/Footer";
 import { getCampaignList } from '../services/CampignService'; // Adjust the import path as necessary
 
 const containerStyle = {
@@ -12,6 +13,7 @@ const containerStyle = {
   border: '1px solid #ccc', // Adds a border around the map
    marginLeft: '70px',
    marginTop: '20px',
+   marginBottom: '50px'
 
   
 
@@ -72,7 +74,9 @@ function MyComponent({ googleMapsApiKey }) {
           />
         ))}
       </GoogleMap>
+      <Footer1/>
     </LoadScript>
+    
   );
 }
 

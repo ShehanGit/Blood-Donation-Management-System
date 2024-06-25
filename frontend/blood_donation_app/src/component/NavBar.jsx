@@ -8,7 +8,7 @@ const NavBar = () => {
   const { toggleMode } = useThemeMode();
 
   const handleButtonClick = () => {
-    navigate('/dashboard'); // Navigates to the "/dashboard" page
+    navigate('/dashboard1'); 
   };
 
   const handleButtonClick1 = () => {

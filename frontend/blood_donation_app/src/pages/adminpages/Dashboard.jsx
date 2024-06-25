@@ -4,10 +4,10 @@ import NavBar from "../../component/NavBar";
 import Sidebar from "../../component/Sidebar";
 import { Bar, Line } from "react-chartjs-2";
 import { Button } from "flowbite-react";
-
 import { Chart, registerables } from 'chart.js';
 import { getDonationList, getAppointmentStats } from "../../services/DonationServices";
 import "../../css/Dashboard.css";
+import Footer1 from "../../component/Footer";
 
 // Register Chart.js components
 Chart.register(...registerables);
@@ -157,6 +157,8 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+      <Footer1/>
+
     </div>
   );
 }

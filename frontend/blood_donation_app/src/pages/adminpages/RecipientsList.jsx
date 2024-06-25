@@ -4,7 +4,9 @@ import NavBar from "../../component/NavBar";
 import Sidebar from "../../component/Sidebar";
 import { Table, Button, Flowbite, useThemeMode } from "flowbite-react";
 import { getRecipientList, deleteRecipient } from "../../services/ResipientService";
-import '../css/ResipiantList.css';
+import '../../css/ResipiantList.css';
+import Footer1 from "../../component/Footer";
+
 
 export default function RecipientsList() {
   const [recipients, setRecipients] = useState([]);
@@ -118,6 +120,7 @@ export default function RecipientsList() {
           </div>
         </div>
       </div>
+      <Footer1/>
     </Flowbite>
   );
 }

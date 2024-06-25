@@ -4,6 +4,8 @@ import '../css/AppointmentCreate.css';
 import NavBar from "../component/NavBar";
 import { createAppointment } from "../services/AppointmentServices";
 import { getCampaignById } from "../services/CampignService"; // Import the service
+import Footer1 from "../component/Footer";
+
 
 export default function AppointmentCreate() {
   const { campaignId } = useParams(); // Extract the campaignId from the URL
@@ -150,6 +152,7 @@ export default function AppointmentCreate() {
           </form>
         </div>
       </div>
+      <Footer1/>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import '../css/DonerRegister.css';
 import NavBar from "../component/NavBar";
 import { createDonor } from "../services/DoneerServices";
-
+import Footer1 from "../component/Footer";
 
 
 export default function DonerRegister() {
@@ -258,6 +258,7 @@ export default function DonerRegister() {
           </form>
         </div>
       </div>
+      <Footer1/>
     </div>
   );
 }

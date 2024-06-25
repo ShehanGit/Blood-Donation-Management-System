@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../../component/NavBar";
 import Sidebar from "../../component/Sidebar";
+import Footer1 from "../../component/Footer";
+
+
+
 import '../../css/AddRecipient.css';
 import { createRecipient } from "../../services/ResipientService"; // Ensure you have a service to fetch hospitals
 import { getHospitalList } from "../../services/HospitalServices"; // Ensure you have a service to fetch hospitals
@@ -228,6 +232,8 @@ export default function AddRecipients() {
           </div>
         </div>
       </div>
+      <Footer1/>
+      
     </div>
   );
 }

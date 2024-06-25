@@ -4,6 +4,8 @@ import NavBar from "../../component/NavBar";
 import Sidebar from "../../component/Sidebar";
 import { Table, Button } from "flowbite-react";
 import { listAppointments, deleteAppointment } from "../../services/AppointmentServices";
+import Footer1 from "../../component/Footer";
+
 
 
 export default function ApoinmentList() {
@@ -105,6 +107,7 @@ export default function ApoinmentList() {
           </div>
         </div>
       </div>
+      <Footer1/>
     </div>
   );
 }

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import '../css/DonerRegister.css';
 import NavBar from "../component/NavBar";
 import { createCampaign } from "../services/CampignService";
+import Footer1 from "../component/Footer";
+
+
 
 export default function CampignCreate() {
   const [name, setName] = useState('');
@@ -247,6 +250,7 @@ export default function CampignCreate() {
           </form>
         </div>
       </div>
+      <Footer1/>
     </div>
   );
 }

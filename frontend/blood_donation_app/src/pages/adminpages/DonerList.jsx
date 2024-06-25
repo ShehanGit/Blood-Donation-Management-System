@@ -4,6 +4,7 @@ import NavBar from "../../component/NavBar";
 import Sidebar from "../../component/Sidebar";
 import { Table, Button } from "flowbite-react";
 import { getDonorList, deleteDonor } from "../../services/DoneerServices"; // Assuming you have these service functions
+import Footer1 from "../../component/Footer";
 
 export default function DonorList() {
   const [donors, setDonors] = useState([]);
@@ -112,6 +113,7 @@ export default function DonorList() {
             </Table>
           </div>
         </div>
+        <Footer1/>
       </div>
 
   );

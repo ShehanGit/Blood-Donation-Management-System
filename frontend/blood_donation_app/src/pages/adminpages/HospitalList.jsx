@@ -4,6 +4,8 @@ import NavBar from "../../component/NavBar";
 import Sidebar from "../../component/Sidebar";
 import { Table, Button } from "flowbite-react";
 import { getHospitalList, deleteHospital } from "../../services/HospitalServices"; // Assuming you have these service functions
+import Footer1 from "../../component/Footer";
+
 
 export default function HospitalList() {
   const [hospitals, setHospitals] = useState([]);
@@ -108,6 +110,7 @@ export default function HospitalList() {
           </div>
         </div>
       </div>
+      <Footer1/>
     </div>
   );
 }

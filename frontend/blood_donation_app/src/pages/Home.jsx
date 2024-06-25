@@ -1,6 +1,8 @@
 import React from "react";
 import '../css/Home.css';
 import NavBar from '../component/NavBar';
+import Footer1 from "../component/Footer";
+
 import { useNavigate } from 'react-router-dom';
 import heroImage from '../Images/heroImage2.jpg';
 import { Flowbite } from "flowbite-react";
@@ -12,7 +14,6 @@ export default function Home() {
     navigate('/map'); 
   };
 
-
   return (
     <Flowbite>
       <div>
@@ -22,7 +23,7 @@ export default function Home() {
             <h1>Your Blood Can Save Lives</h1>
             <p>Every drop counts. Make a difference today.</p>
             <button onClick={handleButtonClick} className="cta-button">
-            Make An Appointment
+              Make An Appointment
             </button>
           </div>
           <div className="hero-image">
@@ -30,7 +31,7 @@ export default function Home() {
           </div>
         </div>
         <div className="info-cards">
-        <div className="info-card">
+          <div className="info-card">
             <h3>Are you eligible?</h3>
             <p>Donating blood is safe and easy to do. Find out the general eligibility criteria.</p>
             <button onClick={() => navigate('/register')}>Eligibility</button>
@@ -45,9 +46,8 @@ export default function Home() {
             <p>Enter your zip code to find the nearest donation center or blood drive near you.</p>
             <button onClick={() => navigate('/campigncreate')}>Organize</button>
           </div>
-          
-          
         </div>
+        <Footer1/>
       </div>
     </Flowbite>
   );

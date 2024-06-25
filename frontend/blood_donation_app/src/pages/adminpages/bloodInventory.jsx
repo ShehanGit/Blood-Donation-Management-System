@@ -4,6 +4,7 @@ import NavBar from "../../component/NavBar";
 import Sidebar from "../../component/Sidebar";
 import { Table, Button } from "flowbite-react";
 import { listBloodInventory, deleteBloodInventoryItem } from "../../services/BloodInventoryServices";
+import Footer1 from "../../component/Footer";
 
 export default function BloodInventory() {
   const [bloodInventory, setBloodInventory] = useState([]);
@@ -100,6 +101,8 @@ export default function BloodInventory() {
           </div>
         </div>
       </div>
+      <Footer1/>
+
     </div>
   );
 }

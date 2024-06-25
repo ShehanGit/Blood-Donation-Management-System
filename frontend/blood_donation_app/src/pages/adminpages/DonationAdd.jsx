@@ -3,6 +3,7 @@ import NavBar from "../../component/NavBar";
 import Sidebar from "../../component/Sidebar";
 import '../../css/AddRecipient.css';
 import { createDonation } from "../../services/DonationServices"; // Update the service import
+import Footer1 from "../../component/Footer";
 
 export default function AddDonation() {
   const [donorId, setDonorId] = useState('');
@@ -219,6 +220,8 @@ export default function AddDonation() {
           </div>
         </div>
       </div>
+<Footer1/>
+
     </div>
   );
 }
