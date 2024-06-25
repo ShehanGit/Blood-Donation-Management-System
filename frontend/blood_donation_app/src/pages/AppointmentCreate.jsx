@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom'; // Import useParams to access route parameters
+import { useParams } from 'react-router-dom';
 import '../css/AppointmentCreate.css';
 import NavBar from "../component/NavBar";
-import { createAppointment } from "../services/AppointmentServices"; // Ensure this service is correctly implemented
+import { createAppointment } from "../services/AppointmentServices";
+import { getCampaignById } from "../services/CampignService"; // Import the service
 
 export default function AppointmentCreate() {
-  const { locationId } = useParams(); // Extract the locationId from the URL
+  const { campaignId } = useParams(); // Extract the campaignId from the URL
   const [donorId, setDonorId] = useState('');
   const [location, setLocation] = useState(''); // This will be set by useEffect
   const [scheduledDate, setDate] = useState('');
@@ -17,10 +18,18 @@ export default function AppointmentCreate() {
     termsAccepted: '',
   });
 
-  // Set the location input to the locationId from the URL when component mounts
+  // Fetch campaign details when component mounts
   useEffect(() => {
-    setLocation(locationId || ''); // Default to empty string if locationId is undefined
-  }, [locationId]);
+    if (campaignId) {
+      getCampaignById(campaignId)
+        .then(response => {
+          setLocation(response.data.location);
+        })
+        .catch(error => {
+          console.error("Failed to fetch campaign details:", error);
+        });
+    }
+  }, [campaignId]);
 
   const validateForm = () => {
     let isValid = true;
@@ -51,11 +60,11 @@ export default function AppointmentCreate() {
     e.preventDefault();
     if (validateForm()) {
       const appointmentDetails = {
-             "donor": {
-                   "donorId": 3 
-      },
+        donor: {
+          donorId: 3 
+        },
         location: location,
-        scheduledDate: scheduledDate + 'T14:00:00Z', // Append time if only date is selected
+        scheduledDate: scheduledDate + 'T14:00:00Z',
         termsAccepted: termsAccepted
       };
 
@@ -102,6 +111,7 @@ export default function AppointmentCreate() {
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   required
+                  readOnly // Make the location input read-only as it is fetched from the campaign
                 />
                 {errors.location && <div className="text-red-500">{errors.location}</div>}
               </div>
