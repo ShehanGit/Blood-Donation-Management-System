@@ -91,7 +91,7 @@ export default function DonationList() {
                           size="xs"
                           onClick={() => handleUpdate(donation.donationId)}
                         >
-                          Update
+                          Edit
                         </Button>
                         <Button
                           size="xs"
