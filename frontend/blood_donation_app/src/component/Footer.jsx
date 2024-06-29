@@ -11,7 +11,7 @@ export default function Footer1() {
               href="https://flowbite.com"
               src="https://flowbite.com/docs/images/logo.svg"
               alt="Flowbite Logo"
-              name="Flowbite"
+              name="BloodFlow"
             />
           </div>
           <div style={{ textAlign: 'left', marginTop: '1rem', padding: '10px' }}>
