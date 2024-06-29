@@ -91,14 +91,11 @@ public class DonationController {
         String donorEmail = donation.getDonor().getEmail();
         String subject = "Details of the Recipient for Your Donation";
         String text = "Dear " + donation.getDonor().getName() + ",\n\n" +
-                "Thank you for your generous donation. Here are the details of the recipient who will benefit from your donation:\n\n" +
+                "Thank you for your generous donation. Here are the details of the recipient:\n\n" +
                 "Name: " + recipient.getName() + "\n" +
-                "Contact Number: " + recipient.getContactNumber() + "\n" +
                 "Blood Type Needed: " + recipient.getBloodTypeNeeded() + "\n" +
-                "Urgency Level: " + recipient.getUrgencyLevel() + "\n" +
-                "Receiving Date: " + recipient.getReceivingDate() + "\n" +
-                "Required Blood Volume: " + recipient.getRequiredBloodVolume() + " ml\n\n" +
-                "Thank you again for your support.\n\n" +
+                "Urgency Level: " + recipient.getUrgencyLevel() + "\n\n" +
+                "Thank you for your support.\n\n" +
                 "Best regards,\n" +
                 "Blood Donation Management System";
 
