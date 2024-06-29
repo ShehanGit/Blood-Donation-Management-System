@@ -93,8 +93,10 @@ export default function Dashboard() {
   const allMonths = [...new Set([...Object.keys(monthlyData), ...Object.keys(requiredMonthlyData)])];
 
   const sortedMonthlyKeys = allMonths.sort((a, b) => {
-    const aDate = new Date(`${a.split(' ')[1]}-${a.split(' ')[0]}-01`);
-    const bDate = new Date(`${b.split(' ')[1]}-${b.split(' ')[0]}-01`);
+    const [aMonth, aYear] = a.split(' ');
+    const [bMonth, bYear] = b.split(' ');
+    const aDate = new Date(`${aYear}-${aMonth}-01`);
+    const bDate = new Date(`${bYear}-${bMonth}-01`);
     return aDate - bDate;
   });
 
