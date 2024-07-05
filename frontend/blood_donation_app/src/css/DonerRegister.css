@@ -1,0 +1,19 @@
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  margin-bottom: 250px;
+
+}
+
+.container3 {
+  width: 1100px;
+  padding: 20px;
+  background-color: #0e2d7b63;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 200px;
+  
+
+}

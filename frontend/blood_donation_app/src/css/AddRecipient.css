@@ -1,0 +1,17 @@
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+  
+  }
+  
+  .container1 {
+    width: 1000px;
+    padding: 20px;
+    background-color: #0e2d7b62;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 100px;
+  
+  }
