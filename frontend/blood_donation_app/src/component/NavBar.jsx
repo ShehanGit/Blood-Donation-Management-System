@@ -11,8 +11,12 @@ const NavBar = () => {
     navigate('/dashboard1'); 
   };
 
+  const handleButtonClick2 = () => {
+    navigate('/loginpage'); 
+  }; 
+
   const handleButtonClick1 = () => {
-    navigate('/'); // Navigates to the home page
+    navigate('/'); 
   };
 
   return (
@@ -23,10 +27,13 @@ const NavBar = () => {
           <span onClick={handleButtonClick1} className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white">BloodFlow</span>
         </Navbar.Brand>
         <div className="flex md:order-2">
-          <DarkThemeToggle onClick={toggleMode} className="mr-2" />
-          <Button onClick={handleButtonClick} style={{ width: '150px' }}>Sign In</Button>
-          <Navbar.Toggle />
-        </div>
+    <DarkThemeToggle onClick={toggleMode} className="mr-2" />
+    <Button onClick={handleButtonClick} style={{ width: '150px', backgroundColor: '#314985', color: 'white' }}>Login</Button>
+    <Button onClick={handleButtonClick2} style={{ width: '150px', backgroundColor: '#314985', color: 'white' }}>Admin Login </Button>
+
+    <Navbar.Toggle />
+</div>
+
         <Navbar.Collapse>
           <Navbar.Link href="/" active>
             Home

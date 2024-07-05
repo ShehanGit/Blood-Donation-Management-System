@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
 import DonerRegister from './pages/DonerRegister';
@@ -17,13 +17,30 @@ import HospitalList from './pages/adminpages/HospitalList';
 import Dashboard from './pages/adminpages/Dashboard';
 import Map from './pages/Map';
 import CampignCreate from './pages/CampaignCreate';
+import LoginPage from './pages/LoginPage';
 
-
-
-
-
+import { fetchData } from './services/authService';
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        await fetchData();
+        setAuthenticated(true);
+      } catch (error) {
+        setAuthenticated(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
+  if (!authenticated) {
+    return <LoginPage />;
+  }
+
   return (
     <div className="App">
       <Router>
@@ -44,13 +61,12 @@ function App() {
           <Route exact path="/map" element={<Map />} />
           <Route path="/appointment/:campaignId" element={<AppointmentCreate />} />
           <Route path="/campigncreate" element={<CampignCreate />} />
-
-          
-          </Routes>
+          <Route path="/loginpage" element={<LoginPage />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
       </Router>
     </div>
   );
 }
 
 export default App;
-

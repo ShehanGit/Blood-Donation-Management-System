@@ -2,7 +2,6 @@ import React from "react";
 import '../css/Home.css';
 import NavBar from '../component/NavBar';
 import Footer1 from "../component/Footer";
-
 import { useNavigate } from 'react-router-dom';
 import heroImage from '../Images/heroImage2.jpg';
 import { Flowbite } from "flowbite-react";

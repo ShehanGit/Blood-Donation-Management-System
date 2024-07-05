@@ -1,0 +1,23 @@
+/* LoginPage.css */
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: auto;
+    height: 360px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(10, 10, 10, 0.966);
+    border: 1px solid #000000;
+    border-radius: 8px;
+    margin-top: 100px;
+    background-color: #00000013;
+  }
+  
+  /* Targeting TextInput components specifically */
+  .formContainer input[type="email"],
+  .formContainer input[type="password"] {
+    background-color: transparent; /* Set input field background to transparent */
+    color: #333; /* Ensuring text is visible, adjust color as needed */
+    border: 1px solid #ccc; /* Optional: adding a border to input fields */
+  }
+  
