@@ -19,27 +19,8 @@ import Map from './pages/Map';
 import CampignCreate from './pages/CampaignCreate';
 import LoginPage from './pages/LoginPage';
 
-import { fetchData } from './services/authService';
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        await fetchData();
-        setAuthenticated(true);
-      } catch (error) {
-        setAuthenticated(false);
-      }
-    };
-
-    checkAuth();
-  }, []);
-
-  if (!authenticated) {
-    return <LoginPage />;
-  }
 
   return (
     <div className="App">
@@ -62,7 +43,7 @@ function App() {
           <Route path="/appointment/:campaignId" element={<AppointmentCreate />} />
           <Route path="/campigncreate" element={<CampignCreate />} />
           <Route path="/loginpage" element={<LoginPage />} />
-          <Route path="*" element={<Navigate to="/" />} />
+
         </Routes>
       </Router>
     </div>
