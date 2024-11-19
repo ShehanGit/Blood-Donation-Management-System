@@ -7,9 +7,9 @@ import { getCampaignById } from "../services/CampignService";
 import Footer1 from "../component/Footer";
 
 export default function AppointmentCreate() {
-  const { campaignId } = useParams(); // Extract the campaignId from the URL
+  const { campaignId } = useParams();
   const [donorId, setDonorId] = useState('');
-  const [location, setLocation] = useState(''); // This will be set by useEffect
+  const [location, setLocation] = useState('');
   const [scheduledDate, setDate] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [successMessage, setSuccessMessage] = useState(''); // For success message
@@ -20,7 +20,6 @@ export default function AppointmentCreate() {
     termsAccepted: '',
   });
 
-  // Fetch campaign details when component mounts
   useEffect(() => {
     if (campaignId) {
       getCampaignById(campaignId)
@@ -63,26 +62,24 @@ export default function AppointmentCreate() {
     if (validateForm()) {
       const appointmentDetails = {
         donor: {
-          donorId: donorId // Ensure this is dynamically passed
+          donorId: donorId,
         },
         location: location,
         scheduledDate: scheduledDate + 'T14:00:00Z',
-        termsAccepted: termsAccepted
+        termsAccepted: termsAccepted,
       };
 
-      console.log("Submitting:", appointmentDetails); // Debugging line
       createAppointment(appointmentDetails)
-        .then(response => {
-          console.log("Appointment created successfully:", response);
+        .then(() => {
           setSuccessMessage("Appointment created successfully!");
-          // Optionally clear the form
+          // Clear form fields
           setDonorId('');
           setDate('');
           setTermsAccepted(false);
+          setTimeout(() => setSuccessMessage(''), 3000); // Hide the message after 3 seconds
         })
         .catch(error => {
           console.error("Failed to create appointment:", error);
-          // Optionally display error messages here
         });
     }
   };
@@ -90,13 +87,21 @@ export default function AppointmentCreate() {
   return (
     <div>
       <NavBar />
+      {successMessage && (
+        <div className="success-modal">
+          <div className="modal-content">
+            <h2>{successMessage}</h2>
+            <button
+              className="close-button"
+              onClick={() => setSuccessMessage('')}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       <div className="center-container5">
         <div className="container1">
-          {successMessage && (
-            <div className="text-green-500 text-lg font-medium mb-4 text-center">
-              {successMessage}
-            </div>
-          )}
           <form className="p-6" onSubmit={handleSubmit}>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
               <div className="md:col-span-2">
@@ -104,7 +109,7 @@ export default function AppointmentCreate() {
                 <input
                   type="text"
                   id="donor_id"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 placeholder-black dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="input-field"
                   placeholder="Enter Donor ID"
                   value={donorId}
                   onChange={(e) => setDonorId(e.target.value)}
@@ -117,12 +122,11 @@ export default function AppointmentCreate() {
                 <input
                   type="text"
                   id="location"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 placeholder-black dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Donation Center Name"
+                  className="input-field"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   required
-                  readOnly // Make the location input read-only as it is fetched from the campaign
+                  readOnly
                 />
                 {errors.location && <div className="text-red-500">{errors.location}</div>}
               </div>
@@ -131,7 +135,7 @@ export default function AppointmentCreate() {
                 <input
                   type="date"
                   id="date"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 placeholder-black dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="input-field"
                   value={scheduledDate}
                   onChange={(e) => setDate(e.target.value)}
                   required
@@ -144,24 +148,24 @@ export default function AppointmentCreate() {
                 <input
                   id="terms"
                   type="checkbox"
-                  className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                  className="checkbox"
                   checked={termsAccepted}
                   onChange={(e) => setTermsAccepted(e.target.checked)}
                   required
                 />
               </div>
               <label htmlFor="terms" className="ml-2 text-lg font-medium text-left text-white dark:text-gray-300">
-                I agree with the <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.
+                I agree with the <a href="#" className="text-blue-600 hover:underline">terms and conditions</a>.
               </label>
               {errors.termsAccepted && <div className="text-red-500">{errors.termsAccepted}</div>}
             </div>
-            <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <button type="submit" className="submit-button">
               Submit
             </button>
           </form>
         </div>
       </div>
-      <Footer1/>
+      <Footer1 />
     </div>
   );
 }
