@@ -3,9 +3,8 @@ import { useParams } from 'react-router-dom';
 import '../css/AppointmentCreate.css';
 import NavBar from "../component/NavBar";
 import { createAppointment } from "../services/AppointmentServices";
-import { getCampaignById } from "../services/CampignService"; // Import the service
+import { getCampaignById } from "../services/CampignService";
 import Footer1 from "../component/Footer";
-
 
 export default function AppointmentCreate() {
   const { campaignId } = useParams(); // Extract the campaignId from the URL
@@ -13,6 +12,7 @@ export default function AppointmentCreate() {
   const [location, setLocation] = useState(''); // This will be set by useEffect
   const [scheduledDate, setDate] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(''); // For success message
   const [errors, setErrors] = useState({
     donorId: '',
     location: '',
@@ -63,7 +63,7 @@ export default function AppointmentCreate() {
     if (validateForm()) {
       const appointmentDetails = {
         donor: {
-          donorId: 3 
+          donorId: donorId // Ensure this is dynamically passed
         },
         location: location,
         scheduledDate: scheduledDate + 'T14:00:00Z',
@@ -74,11 +74,15 @@ export default function AppointmentCreate() {
       createAppointment(appointmentDetails)
         .then(response => {
           console.log("Appointment created successfully:", response);
-          // Redirect or display a success message here
+          setSuccessMessage("Appointment created successfully!");
+          // Optionally clear the form
+          setDonorId('');
+          setDate('');
+          setTermsAccepted(false);
         })
         .catch(error => {
           console.error("Failed to create appointment:", error);
-          // Display error messages here
+          // Optionally display error messages here
         });
     }
   };
@@ -88,6 +92,11 @@ export default function AppointmentCreate() {
       <NavBar />
       <div className="center-container5">
         <div className="container1">
+          {successMessage && (
+            <div className="text-green-500 text-lg font-medium mb-4 text-center">
+              {successMessage}
+            </div>
+          )}
           <form className="p-6" onSubmit={handleSubmit}>
             <div className="grid gap-6 mb-6 md:grid-cols-2">
               <div className="md:col-span-2">
