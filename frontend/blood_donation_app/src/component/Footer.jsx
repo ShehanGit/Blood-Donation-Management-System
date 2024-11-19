@@ -7,12 +7,12 @@ export default function Footer1() {
       <div className="w-full">
         <div className="grid w-full grid-cols-2 gap-8 sm:grid-cols-4">
           <div>
-            <Footer.Brand
+            {/* <Footer.Brand
               href="https://flowbite.com"
               src="https://flowbite.com/docs/images/logo.svg"
               alt="Flowbite Logo"
               name="BloodFlow"
-            />
+            /> */}
           </div>
           <div style={{ textAlign: 'left', marginTop: '1rem', padding: '10px' }}>
             <Footer.Title title="About" style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#f5f5f5' }} />
