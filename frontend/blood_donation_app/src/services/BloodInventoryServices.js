@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const REST_API_BASE_URL = "http://localhost:8080/blood_inventory";
+const REST_API_BASE_URL = "http://18.207.126.168:8081/blood_inventory";
 
 // Fetch all blood inventory entries
 export const listBloodInventory = () => axios.get(REST_API_BASE_URL);

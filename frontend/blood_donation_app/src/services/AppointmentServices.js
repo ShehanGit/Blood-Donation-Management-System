@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const REST_API_BASE_URL = "http://localhost:8080/appointments";
+const REST_API_BASE_URL = "http://18.207.126.168:8081/appointments";
 
 // Fetch all appointments
 export const listAppointments = () => axios.get(REST_API_BASE_URL);
