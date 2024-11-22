@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const REST_API_BASE_URL = "http://18.207.126.168:8081/donations";
+const REST_API_BASE_URL = "http://localhost:8082/donations";
 
 // Fetch all donations
 export const getDonationList = () => axios.get(REST_API_BASE_URL);
