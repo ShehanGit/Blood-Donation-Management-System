@@ -23,9 +23,7 @@ A streamlined platform for efficient blood donation management.
 
 cd bloodnet
 
-npm install
-# or if using Python
-pip install -r requirements.txt
+
 
 
 
