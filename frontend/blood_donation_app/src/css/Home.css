@@ -1,114 +1,381 @@
+/* Enhanced Home.css - Styling for the BloodFlow application */
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary-red: #e53e3e;
+  --primary-red-dark: #c53030;
+  --primary-blue: #2b6cb0;
+  --primary-blue-light: #ebf8ff;
+  --light-bg: #f7fafc;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #2d3748;
+  scroll-behavior: smooth;
+}
+
+/* Hero section with enhanced styling */
 .hero-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem;
-  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  min-height: 80vh;
 }
 
-.hero-content {
-  max-width: 50%;
+.hero-background {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f56565' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+  z-index: 0;
 }
 
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  color: #2a4d69;
+.hero-title {
+  position: relative;
+  z-index: 1;
+  text-shadow: 2px 2px 15px rgba(0,0,0,0.05);
 }
 
-.hero-content p {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  color: #4b86b4;
+.hero-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary-red);
+  border-radius: 2px;
+  transition: width 0.5s ease;
 }
 
-.cta-button {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  color: white;
-  background-color: #e94b3c;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.hero-title:hover::after {
+  width: 100px;
 }
 
-.cta-button:hover {
-  background-color: #d34a2f;
+.hero-section:hover .float-animation {
+  animation-play-state: paused;
 }
 
-.hero-image {
-  max-width: 45%;
+.hero-img {
+  position: relative;
+  z-index: 1;
+  transition: all 0.5s ease;
+  filter: brightness(1.05) contrast(1.05);
 }
 
-.hero-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
+@media (min-width: 768px) {
+  .hero-title::after {
+    left: 0;
+  }
 }
 
-.info-cards {
-  display: flex;
-  justify-content: space-around;
-  padding: 2rem;
+@media (max-width: 768px) {
+  .hero-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
+/* Animated stats section */
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  transition: all 0.4s ease;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(45deg);
+  transition: transform 1s ease;
+  z-index: 1;
+}
+
+.stat-card:hover::before {
+  transform: rotate(45deg) translate(100%, 100%);
+}
+
+.stat-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.stat-icon-container {
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0.4);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+/* Info cards styling */
 .info-card {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.315);
-  padding: 2rem;
-  text-align: center;
-  width: 30%;
-  transition: transform 0.3s, box-shadow 0.3s;
-  color: #333333;
+  transition: all 0.4s ease;
+  z-index: 1;
+  overflow: visible;
 }
 
 .info-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.info-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+/* Campaign cards */
+.campaign-card {
+  overflow: hidden;
+  transition: all 0.4s ease;
 }
 
-.info-card p {
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
+.campaign-card img {
+  transition: transform 0.7s ease, filter 0.7s ease;
 }
 
-.info-card button {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.campaign-card:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
-.info-card:nth-child(1) button {
-  background-color: #4b86b4;
+/* Blood type compatibility section */
+.blood-type-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
 }
 
-.info-card:nth-child(1) button:hover {
-  background-color: #357ab8;
+.blood-type-container:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-.info-card:nth-child(2) button {
-  background-color: #2a4d69;
+/* Testimonials carousel */
+.testimonial-card {
+  transition: transform 0.3s ease;
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
-.info-card:nth-child(2) button:hover {
-  background-color: #1d3557;
+.testimonial-card:hover {
+  transform: scale(1.02);
 }
 
-.info-card:nth-child(3) button {
-  background-color: #4b86b4;
+/* Call to action section */
+.bg-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-.info-card:nth-child(3) button:hover {
-  background-color: #357ab8;
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-red {
+  0% {
+    box-shadow: 0 0 0 0 rgba(229, 62, 62, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(229, 62, 62, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(229, 62, 62, 0);
+  }
+}
+
+.pulse-red {
+  animation: pulse-red 2s infinite;
+}
+
+/* Blood demand section styling */
+.blood-type-indicator {
+  transition: all 0.3s ease;
+}
+
+.blood-type-indicator:hover {
+  transform: scale(1.05);
+}
+
+/* FAQ section */
+.faq-item {
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  transform: translateX(5px);
+}
+
+/* Newsletter form */
+.newsletter-form input {
+  transition: all 0.3s ease;
+}
+
+.newsletter-form input:focus {
+  border-color: var(--primary-red);
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.3);
+}
+
+/* Enhanced mobile app section */
+.app-screenshot {
+  position: relative;
+  z-index: 1;
+  transition: all 0.5s ease;
+}
+
+.app-screenshot:hover {
+  transform: translateY(-10px) rotate(0deg) !important;
+}
+
+/* Custom scrollbar for modern browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: var(--primary-red);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-red-dark); 
+}
+
+/* Additional utility classes */
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.drop-shadow {
+  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07)) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.06));
+}
+
+.hover-grow {
+  transition: transform 0.3s ease;
+}
+
+.hover-grow:hover {
+  transform: scale(1.05);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--primary-red), var(--primary-red-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 640px) {
+  .hero-section {
+    min-height: 60vh;
+  }
+  
+  .stat-card {
+    padding: 1rem;
+  }
+  
+  .stat-icon-container {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+/* Enhancements for dark mode (can be toggled via JS) */
+.dark-mode {
+  background-color: #1a202c;
+  color: #e2e8f0;
+}
+
+.dark-mode .hero-section {
+  background: linear-gradient(to right, #2d3748, #1a202c);
+}
+
+.dark-mode .hero-title {
+  color: #f7fafc;
+}
+
+.dark-mode .text-gray-600 {
+  color: #cbd5e0;
+}
+
+.dark-mode .bg-white {
+  background-color: #2d3748;
+}
+
+.dark-mode .bg-gray-50 {
+  background-color: #1a202c;
+}
+
+.dark-mode .text-slate-800 {
+  color: #e2e8f0;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations for specific elements */
+.hero-cta-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-cta-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+}
+
+.hero-cta-btn:hover::after {
+  transform: translateX(100%);
+  transition: transform 1s ease;
 }

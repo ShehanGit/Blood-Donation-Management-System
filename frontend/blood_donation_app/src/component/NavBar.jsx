@@ -28,7 +28,7 @@ const NavBar = () => {
         </Navbar.Brand>
         <div className="flex md:order-2">
     <DarkThemeToggle onClick={toggleMode} className="mr-2" />
-    <Button onClick={handleButtonClick} style={{ width: '150px', backgroundColor: '#314985', color: 'white' }}>Login</Button>
+    <Button onClick={handleButtonClick} style={{ width: '150px', backgroundColor: '#E02424', color: 'white' }}>Login</Button>
  
 
     <Navbar.Toggle />
